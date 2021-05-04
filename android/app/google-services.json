@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "961845908780",
+    "project_id": "flowchat-e48d8",
+    "storage_bucket": "flowchat-e48d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961845908780:android:d546fb6ca3fb2551928889",
+        "android_client_info": {
+          "package_name": "com.chatappproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961845908780-3ivjq0hm2kvic018tnlpnovh5i80fh5j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chatappproject",
+            "certificate_hash": "81e499e15e334a07769958ccc01aac90c8d2eb1a"
+          }
+        },
+        {
+          "client_id": "961845908780-37mhstt2l9atpme1qak3jtnikedbubf0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiM4HfkDVJChkI7tMo2oWyRX0McreJW4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961845908780-37mhstt2l9atpme1qak3jtnikedbubf0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
