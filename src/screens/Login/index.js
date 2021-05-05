@@ -1,7 +1,6 @@
 //Libraries
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Alert } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
 // Includes
 import { Context as AuthContext } from '../../shared/context/AuthContext';
@@ -11,30 +10,49 @@ import {
   LoginContainer,
   Label,
   Logo,
-  Line,
-  GoogleButton,
   SocialContainer,
+  SocialButton,
+  ButtonDivider,
+  BackgroundContainer,
 } from './styles';
 
 const Login = () => {
-  const navigation = useNavigation();
   const { state, signinGoogle, clearErrorMessage } = useContext(AuthContext);
+  const [googleButtonLoading, setGoogleButtonLoading] = useState(false);
 
   useEffect(() => {
     if (state.errorMessage !== '') {
+      // TODO: create something better here...
       Alert.alert('Error', state.errorMessage);
+      setGoogleButtonLoading(false);
+      clearErrorMessage();
     }
   }, [state.errorMessage]);
 
   return (
-    <LoginContainer>
-      <Logo source={require('../../shared/assets/images/Icon.png')} />
-      <Label>FlowChat</Label>
-      <Line />
-      <SocialContainer>
-        <GoogleButton onPress={signinGoogle} />
-      </SocialContainer>
-    </LoginContainer>
+    <BackgroundContainer>
+      <LoginContainer>
+        <Logo source={require('../../shared/assets/images/Icon.png')} />
+        <Label>FlowChat</Label>
+        <ButtonDivider />
+        <SocialContainer>
+          <SocialButton
+            type={'google'}
+            title={'Sign In With Google'}
+            loading={googleButtonLoading}
+            onPress={() => {
+              signinGoogle();
+              setGoogleButtonLoading(true);
+            }}
+          />
+          <SocialButton
+            type={'facebook'}
+            title={'Sign In With Facebook'}
+            onPress={() => {}}
+          />
+        </SocialContainer>
+      </LoginContainer>
+    </BackgroundContainer>
   );
 };
 

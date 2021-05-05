@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import BasicText from '../../shared/components/BasicText';
-import Button from '../../shared/components/Button';
 import { Colors } from '../../shared/constants/colors';
-
-import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import { SocialIcon, Divider } from 'react-native-elements';
 
 export const {
   white,
@@ -16,30 +14,35 @@ export const {
   PinkBalloon,
 } = Colors;
 
-export const GoogleButton = styled(props => (
-  <GoogleSigninButton
-    size={GoogleSigninButton.Size.Wide}
-    color={GoogleSigninButton.Color.Dark}
-    {...props}
-  />
-))`
-  flex: 1;
-  align-self: center;
-  margin-horizontal: 10px;
-  margin-vertical: 10px;
-  width: 100%;
+export const SocialButton = styled(props => <SocialIcon button {...props} />)`
+  margin-horizontal: 20px;
+  margin-vertical: 20px;
+  height: 100px;
 `;
 
+export const ButtonDivider = styled(props => (
+  <Divider style={{ backgroundColor: PinkBalloon, marginHorizontal: 40 }} />
+))``;
+
 export const SocialContainer = styled.View`
-  flex: 0.3;
+  flex: 0.5;
+  justify-content: center;
   flex-direction: column;
   margin-horizontal: 40px;
   margin-vertical: 20px;
 `;
 
+export const BackgroundContainer = styled.View`
+  flex: 1;
+  background-color: ${PinkBalloon};
+`;
+
 export const LoginContainer = styled.View`
   flex: 1;
+  border-radius: 60px;
   background-color: ${LogoBackground};
+  margin-horizontal: 20px;
+  margin-vertical: 20px;
 `;
 
 export const Logo = styled.Image.attrs({
@@ -56,19 +59,5 @@ export const Label = styled(props => <BasicText {...props} />)`
   font-size: 50px;
   align-self: center;
   color: ${PinkBalloon};
-  margin-top: 10px;
   margin-bottom: 10px;
-`;
-
-export const ButtonContainer = styled.View`
-  flex: 1;
-  align-self: center;
-  justify-content: center;
-  background-color: red;
-`;
-
-export const Line = styled.View`
-  border-bottom-color: ${PinkBalloon};
-  border-bottom-width: 1px;
-  margin-horizontal: 50px;
 `;

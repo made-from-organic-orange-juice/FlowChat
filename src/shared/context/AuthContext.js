@@ -5,6 +5,7 @@ import {
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
+import SInfo from 'react-native-sensitive-info';
 
 /*
  * @description
@@ -57,25 +58,21 @@ const authReducer = (state, action) => {
   }
 };
 
-/**
- * @description Will try to signin
- * @param {*} dispatch
- */
-
 const signinGoogle = dispatch => {
   return async () => {
     // Try to signin
-
-    // Get the users ID token
-    const { idToken } = await GoogleSignin.signIn();
-
-    // Create a Google credential with the token
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-
-    // Sign-in the user with the credential
-    const userCredential = await auth().signInWithCredential(googleCredential);
-
     try {
+      // Get the users ID token
+      const { idToken } = await GoogleSignin.signIn();
+
+      // Create a Google credential with the token
+      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+      // Sign-in the user with the credential
+      const userCredential = await auth().signInWithCredential(
+        googleCredential,
+      );
+
       dispatch({
         type: kACTIONS.SIGNIN,
         userInformation: userCredential,
@@ -90,11 +87,29 @@ const signinGoogle = dispatch => {
   };
 };
 
-/**
- * @description Will try to singout by deleting the accessToken,
- * Refresh Token and the userScope data.
- * @param {*} dispatch
- */
+const trySigninSilently = dispatch => {
+  return async () => {
+    try {
+      const { idToken } = await GoogleSignin.signInSilently();
+
+      if (idToken !== null) {
+        // Create a Google credential with the token
+        const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+        // Sign-in the user with the credential
+        const userCredential = await auth().signInWithCredential(
+          googleCredential,
+        );
+
+        dispatch({
+          type: kACTIONS.SIGNIN,
+          userInformation: userCredential,
+        });
+      }
+    } catch (error) {}
+  };
+};
+
 const signout = dispatch => {
   return async () => {
     await auth().signOut();
@@ -126,11 +141,12 @@ const clearErrorMessage = dispatch => {
 };
 
 /**
- * @description Make it the authContext available
+ * @description Make authContext available
  */
 export const { Provider, Context } = createDataContext(
   authReducer,
   {
+    trySigninSilently,
     signinGoogle,
     signout,
     clearErrorMessage,

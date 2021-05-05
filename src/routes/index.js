@@ -48,37 +48,31 @@ const MainStack = () => {
 
 const Routes = () => {
   const { webClientId } = Auth;
-  const { state, signout } = useContext(AuthContext);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const { state, trySigninSilently } = useContext(AuthContext);
 
   useEffect(() => {
     // Add everything that needs to be loaded below...
 
     try {
+      // this is for configuration fo firebase
       GoogleSignin.configure({
         webClientId: webClientId,
       });
 
+      // if you are already signed in, just show mainscreen
+      trySigninSilently();
       SplashScreen.hide();
     } catch (error) {
       console.log(error);
     }
   }, []);
 
-  useEffect(() => {
-    if (state.userInformation === null) {
-      setLoggedIn(false);
-    } else {
-      setLoggedIn(true);
-    }
-  }, [state.userInformation]);
-
   return (
     <NavigationContainer>
       {/*
        * User us not signed in! Show the login screen
        */}
-      {!loggedIn ? LoginStack() : MainStack()}
+      {state.userInformation === null ? LoginStack() : MainStack()}
     </NavigationContainer>
   );
 };
