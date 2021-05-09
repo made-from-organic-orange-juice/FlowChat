@@ -5,7 +5,6 @@ import {
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
-import SInfo from 'react-native-sensitive-info';
 
 /*
  * @description
@@ -58,6 +57,11 @@ const authReducer = (state, action) => {
   }
 };
 
+/**
+ *
+ * @param {*} dispatch
+ * @returns
+ */
 const signinGoogle = dispatch => {
   return async () => {
     // Try to signin
@@ -87,6 +91,12 @@ const signinGoogle = dispatch => {
   };
 };
 
+/**
+ *
+ * @param {*} dispatch
+ * @returns
+ */
+
 const trySigninSilently = dispatch => {
   return async () => {
     try {
@@ -110,6 +120,11 @@ const trySigninSilently = dispatch => {
   };
 };
 
+/**
+ *
+ * @param {*} dispatch
+ * @returns
+ */
 const signout = dispatch => {
   return async () => {
     await auth().signOut();

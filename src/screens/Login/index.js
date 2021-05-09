@@ -22,7 +22,7 @@ const Login = () => {
 
   useEffect(() => {
     if (state.errorMessage !== '') {
-      // TODO: create something better here...
+      // TODO: create something better here... maybe a toast at the button..
       Alert.alert('Error', state.errorMessage);
       setGoogleButtonLoading(false);
       clearErrorMessage();
@@ -40,6 +40,7 @@ const Login = () => {
             type={'google'}
             title={'Sign In With Google'}
             loading={googleButtonLoading}
+            disabled={googleButtonLoading}
             onPress={() => {
               signinGoogle();
               setGoogleButtonLoading(true);

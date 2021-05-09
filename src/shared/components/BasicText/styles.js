@@ -1,5 +1,3 @@
-//import React from 'react';
-//import {Text, TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 
 export const BasicText = styled.Text`

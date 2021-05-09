@@ -17,7 +17,7 @@ export const {
 export const SocialButton = styled(props => <SocialIcon button {...props} />)`
   margin-horizontal: 20px;
   margin-vertical: 20px;
-  height: 100px;
+  height: 80px;
 `;
 
 export const ButtonDivider = styled(props => (

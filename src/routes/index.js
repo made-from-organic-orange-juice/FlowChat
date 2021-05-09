@@ -12,6 +12,7 @@ import { Context as AuthContext } from '../shared/context/AuthContext';
 
 import Login from '../screens/Login';
 import MainScreen from '../screens/MainScreen';
+import ChatRoom from '../screens/ChatRoom';
 
 // Styles
 //....
@@ -42,6 +43,7 @@ const MainStack = () => {
         headerShown: false,
       }}>
       <Stack.Screen name="Main" component={MainScreen} />
+      <Stack.Screen name="Chatroom" component={ChatRoom} />
     </Stack.Navigator>
   );
 };
