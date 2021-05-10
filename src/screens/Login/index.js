@@ -1,6 +1,5 @@
 //Libraries
 import React, { useContext, useEffect, useState } from 'react';
-import { Alert } from 'react-native';
 
 // Includes
 import { Context as AuthContext } from '../../shared/context/AuthContext';
@@ -23,7 +22,7 @@ const Login = () => {
   useEffect(() => {
     if (state.errorMessage !== '') {
       // TODO: create something better here... maybe a toast at the button..
-      Alert.alert('Error', state.errorMessage);
+      alert('Error', state.errorMessage);
       setGoogleButtonLoading(false);
       clearErrorMessage();
     }
@@ -47,6 +46,7 @@ const Login = () => {
             }}
           />
           <SocialButton
+            disabled
             type={'facebook'}
             title={'Sign In With Facebook'}
             onPress={() => {}}

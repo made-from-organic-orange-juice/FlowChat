@@ -50,6 +50,7 @@ const MainScreen = ({}) => {
     }, 2000);
   }, []);
 
+  // make this a hook
   useEffect(() => {
     async function getRooms() {
       const collections = await firestore().collection('rooms').get();
@@ -72,6 +73,7 @@ const MainScreen = ({}) => {
       onPress={() =>
         navigation.navigate('Chatroom', {
           roomId: item.id,
+          name: name,
         })
       }
       Component={TouchableScale}
@@ -132,7 +134,11 @@ const MainScreen = ({}) => {
             </RoomContainer>
           </Fragment>
         ) : (
-          <ActivityIndicator style={{ flex: 1 }} size="large" color={'blue'} />
+          <ActivityIndicator
+            style={{ flex: 1 }}
+            size="large"
+            colors={['#a5516b', '#ce7793']}
+          />
         )}
       </MainContainer>
     </BackgroundContainer>

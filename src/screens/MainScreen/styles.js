@@ -58,10 +58,10 @@ export const SignoutContainer = styled.View`
 
 export const MainContainer = styled.View`
   flex: 1;
-  border-radius: 60px;
+  border-radius: 10px;
   background-color: ${LogoBackground};
-  margin-horizontal: 20px;
-  margin-vertical: 20px;
+  margin-horizontal: 5px;
+  margin-vertical: 5px;
 `;
 
 export const SignoutButton = styled(props => (
