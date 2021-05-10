@@ -1,30 +1,18 @@
-import React from 'react';
 import styled from 'styled-components/native';
-import BasicText from '../../shared/components/BasicText';
 import { Colors } from '../../shared/constants/colors';
-import { SocialIcon, Divider } from 'react-native-elements';
-import { TextInput } from 'react-native';
 
-export const {
-  white,
-  LogoBackground,
-  blackBackgroundColor2,
-  blackBackgroundColor1,
-  grayTextColor,
-  lightRedButton,
-  PinkBalloon,
-} = Colors;
+export const { PastalMutedBlue, PastalYallow, PastalRed, PastalBlue } = Colors;
 
 export const RoomContainer = styled.View`
   flex: 1;
   margin: 20px;
   border-radius: 10px;
-  background-color: ${LogoBackground};
+  background-color: white;
 `;
 
 export const BackgroundContainer = styled.View`
   flex: 1;
-  background-color: ${PinkBalloon};
+  background-color: ${PastalMutedBlue};
 `;
 
 export const Field = styled.View`
@@ -36,14 +24,14 @@ export const Field = styled.View`
 export const MainContainer = styled.View`
   flex: 1;
   border-radius: 10px;
-  background-color: ${LogoBackground};
+  background-color: white;
   margin-horizontal: 5px;
   margin-vertical: 5px;
 `;
 
 export const SendButtonContainer = styled.View`
   height: 100px;
-  background-color: ${LogoBackground};
+  background-color: white;
   border-radius: 10px;
   flex-direction: row;
   align-items: center;

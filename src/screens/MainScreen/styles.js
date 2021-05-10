@@ -5,18 +5,16 @@ import { Colors } from '../../shared/constants/colors';
 import { Button, Avatar, Divider } from 'react-native-elements';
 
 export const {
-  white,
-  LogoBackground,
-  blackBackgroundColor2,
-  blackBackgroundColor1,
-  grayTextColor,
-  lightRedButton,
-  PinkBalloon,
-  lightBlueSwipeView,
+  PastalMutedBlue,
+  PastalYallow,
+  PastalRed,
+  PastalBlue,
+  LightBlue,
+  PastalOrange,
 } = Colors;
 
 export const ProfileDivider = styled(props => (
-  <Divider style={{ backgroundColor: PinkBalloon, marginHorizontal: 40 }} />
+  <Divider style={{ backgroundColor: PastalMutedBlue, marginHorizontal: 40 }} />
 ))``;
 
 export const AvatarContainer = styled.View`
@@ -28,7 +26,16 @@ export const AvatarContainer = styled.View`
 
 export const ProfileImageContainer = styled.View`
   flex: 0.3;
+  margin-horizontal: 20px;
+  margin-top: 10px;
+  border-radius: 10px;
   justify-content: center;
+  background-color: ${PastalBlue};
+  shadow-color: black;
+  shadow-opacity: 0.26;
+  shadow-offset: { width: 0, height: 2};
+  shadow-radius: 10px;
+  elevation: 3;
 `;
 
 export const UserAvatar = styled(props => (
@@ -42,24 +49,29 @@ export const RoomContainer = styled.View`
   flex: 1;
   margin: 20px;
   border-radius: 10px;
-  background-color: ${LogoBackground};
+  background-color: white;
+  shadow-color: black;
+  shadow-opacity: 0.26;
+  shadow-offset: { width: 0, height: 2};
+  shadow-radius: 10px;
+  elevation: 3;
 `;
 
 export const BackgroundContainer = styled.View`
   flex: 1;
-  background-color: ${PinkBalloon};
+  background-color: ${PastalMutedBlue};
 `;
 
 export const SignoutContainer = styled.View`
   flex: 0.5;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
 `;
 
 export const MainContainer = styled.View`
   flex: 1;
   border-radius: 10px;
-  background-color: ${LogoBackground};
+  background-color: ${LightBlue};
   margin-horizontal: 5px;
   margin-vertical: 5px;
 `;
@@ -67,7 +79,7 @@ export const MainContainer = styled.View`
 export const SignoutButton = styled(props => (
   <Button
     buttonStyle={{
-      backgroundColor: PinkBalloon,
+      backgroundColor: PastalRed,
     }}
     title="Logout"
     raised
@@ -90,5 +102,5 @@ export const Label = styled(props => <BasicText {...props} />)`
   font-size: 20px;
   margin: 10px;
   align-self: center;
-  color: ${PinkBalloon}; ;
+  color: white;
 `;

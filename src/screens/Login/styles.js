@@ -1,18 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import BasicText from '../../shared/components/BasicText';
-import { Colors } from '../../shared/constants/colors';
 import { SocialIcon, Divider } from 'react-native-elements';
 
-export const {
-  white,
-  LogoBackground,
-  blackBackgroundColor2,
-  blackBackgroundColor1,
-  grayTextColor,
-  lightRedButton,
-  PinkBalloon,
-} = Colors;
+import BasicText from '../../shared/components/BasicText';
+import { Colors } from '../../shared/constants/colors';
+
+export const { PastalMutedBlue, PastalYallow, PastalRed, PastalBlue } = Colors;
 
 export const SocialButton = styled(props => <SocialIcon button {...props} />)`
   margin-horizontal: 20px;
@@ -21,7 +14,7 @@ export const SocialButton = styled(props => <SocialIcon button {...props} />)`
 `;
 
 export const ButtonDivider = styled(props => (
-  <Divider style={{ backgroundColor: PinkBalloon, marginHorizontal: 40 }} />
+  <Divider style={{ backgroundColor: PastalMutedBlue, marginHorizontal: 40 }} />
 ))``;
 
 export const SocialContainer = styled.View`
@@ -34,15 +27,20 @@ export const SocialContainer = styled.View`
 
 export const BackgroundContainer = styled.View`
   flex: 1;
-  background-color: ${PinkBalloon};
+  background-color: ${PastalMutedBlue};
 `;
 
 export const LoginContainer = styled.View`
   flex: 1;
-  border-radius: 60px;
-  background-color: ${LogoBackground};
+  border-radius: 10px;
+  background-color: white;
   margin-horizontal: 20px;
   margin-vertical: 20px;
+  shadow-color: black;
+  shadow-opacity: 0.26;
+  shadow-offset: { width: 0, height: 2};
+  shadow-radius: 10px;
+  elevation: 3;
 `;
 
 export const Logo = styled.Image.attrs({
@@ -52,12 +50,13 @@ export const Logo = styled.Image.attrs({
   flex: 0.5;
   justify-content: center;
   align-self: center;
+  margin: 10px;
 `;
 
 export const Label = styled(props => <BasicText {...props} />)`
   font-weight: bold;
   font-size: 50px;
   align-self: center;
-  color: ${PinkBalloon};
+  color: ${PastalBlue};
   margin-bottom: 10px;
 `;

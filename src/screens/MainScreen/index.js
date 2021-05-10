@@ -1,3 +1,4 @@
+// Libraries
 import React, {
   useContext,
   useState,
@@ -10,6 +11,8 @@ import { ListItem, Icon } from 'react-native-elements';
 import firestore from '@react-native-firebase/firestore';
 import TouchableScale from 'react-native-touchable-scale';
 import LinearGradient from 'react-native-linear-gradient';
+
+// Includes
 import { Context as AuthContext } from '../../shared/context/AuthContext';
 import { useNavigation } from '@react-navigation/native';
 
@@ -25,24 +28,27 @@ import {
   RoomContainer,
   ProfileDivider,
   ProfileImageContainer,
+  PastalBlue,
+  PastalMutedBlue,
+  PastalOrange,
+  PastalYallow,
 } from './styles';
+
+/********************************************************************************
+ *  MainScreen
+ * ******************************************************************************/
 
 const MainScreen = ({}) => {
   const { state, signout } = useContext(AuthContext);
-
-  const [name, setName] = useState(
-    state.userInformation?.additionalUserInfo?.profile?.name,
-  );
-
-  const [profile, setProfile] = useState(
-    state.userInformation?.additionalUserInfo?.profile?.picture,
-  );
+  const navigation = useNavigation();
 
   const [rooms, setRooms] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
 
-  const navigation = useNavigation();
+  const name = state.userInformation?.additionalUserInfo?.profile?.name;
+  const profile = state.userInformation?.additionalUserInfo?.profile?.picture;
 
+  // Pull to refresh
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     setTimeout(() => {
@@ -50,7 +56,7 @@ const MainScreen = ({}) => {
     }, 2000);
   }, []);
 
-  // make this a hook
+  //TODO: make this a hook
   useEffect(() => {
     async function getRooms() {
       const collections = await firestore().collection('rooms').get();
@@ -68,6 +74,8 @@ const MainScreen = ({}) => {
   }, [refreshing]);
 
   const keyExtractor = (item, index) => item.id;
+
+  // Render the rooms you can join
   const renderItem = ({ item, index }) => (
     <ListItem
       onPress={() =>
@@ -81,13 +89,13 @@ const MainScreen = ({}) => {
       tension={100} // These props are passed to the parent component (here TouchableScale)
       activeScale={0.95} //
       linearGradientProps={{
-        colors: ['#a5516b', '#ce7793'],
+        colors: [PastalOrange, PastalYallow],
         start: { x: 1, y: 0 },
-        end: { x: 0.2, y: 0 },
+        end: { x: 0.05, y: 0 },
       }}
       ViewComponent={LinearGradient} // Only if no expo
       containerStyle={{
-        borderRadius: 25,
+        borderRadius: 10,
         margin: 5,
         height: 80,
       }}>
@@ -96,7 +104,7 @@ const MainScreen = ({}) => {
         <ListItem.Title>{item.data.name}</ListItem.Title>
         <ListItem.Subtitle>{item.data.description}</ListItem.Subtitle>
       </ListItem.Content>
-      <ListItem.Chevron />
+      <ListItem.Chevron color={'white'} />
     </ListItem>
   );
 
@@ -112,8 +120,8 @@ const MainScreen = ({}) => {
                     uri: profile,
                   }}
                 />
-                <Label>{name}</Label>
               </AvatarContainer>
+              <Label> Welcome {name}</Label>
             </ProfileImageContainer>
             <ProfileDivider />
             <RoomContainer>
@@ -137,7 +145,7 @@ const MainScreen = ({}) => {
           <ActivityIndicator
             style={{ flex: 1 }}
             size="large"
-            colors={['#a5516b', '#ce7793']}
+            colors={[PastalBlue, PastalMutedBlue]}
           />
         )}
       </MainContainer>
