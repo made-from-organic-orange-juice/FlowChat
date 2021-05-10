@@ -94,6 +94,11 @@ const ChatRoom = ({ route }) => {
         Alert.alert(response.errorMessage);
         return;
       }
+
+      if (response.didCancel) {
+        return;
+      }
+
       // base 64
       setImage('data:image/' + response.type + ';base64,' + response.base64);
       setImageFileName(response.fileName);
