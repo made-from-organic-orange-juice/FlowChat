@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { View, Text, Image } from 'react-native';
+import { View, Text, ActivityIndicator } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
+import { Image } from 'react-native-elements';
 
 import { Colors } from '../../../shared/constants/colors';
 
@@ -30,7 +31,14 @@ export const ContentContainer = styled(props => <View {...props} />)`
   border-radius: 10px;
 `;
 
-export const ImageEmbedded = styled(props => <Image {...props} />)`
+export const ImageEmbedded = styled(props => (
+  <Image
+    {...props}
+    style={{ height: 200, width: 250 }}
+    PlaceholderContent={<ActivityIndicator />}
+  />
+))`
+  flex: 1;
   border-radius: 10px;
 `;
 

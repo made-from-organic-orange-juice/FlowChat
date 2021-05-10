@@ -122,6 +122,9 @@ const MainScreen = ({}) => {
                 />
               </AvatarContainer>
               <Label> Welcome {name}</Label>
+              <SignoutContainer>
+                <SignoutButton onPress={() => signout()} />
+              </SignoutContainer>
             </ProfileImageContainer>
             <ProfileDivider />
             <RoomContainer>
@@ -136,9 +139,6 @@ const MainScreen = ({}) => {
                 data={rooms}
                 renderItem={renderItem}
               />
-              <SignoutContainer>
-                <SignoutButton onPress={() => signout()} />
-              </SignoutContainer>
             </RoomContainer>
           </Fragment>
         ) : (

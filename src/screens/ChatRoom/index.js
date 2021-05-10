@@ -9,11 +9,14 @@ import {
   View,
   TextInput,
   Keyboard,
+  Alert,
+  Image,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Icon, Avatar } from 'react-native-elements';
 import firestore from '@react-native-firebase/firestore';
 import { formatDistance } from 'date-fns';
+import { launchImageLibrary } from 'react-native-image-picker';
 
 // Includes
 import useMessages from '../../shared/hooks/useMessages';
@@ -27,7 +30,7 @@ import {
   BackgroundContainer,
   SendButtonContainer,
   PastalBlue,
-  PastalYallow,
+  ImageFileNameContainer,
 } from './styles';
 
 /********************************************************************************
@@ -38,6 +41,8 @@ const ChatRoom = ({ route }) => {
   const { roomId, name } = route.params;
   const navigation = useNavigation();
   const [messageValue, setMessageValue] = useState('');
+  const [image, setImage] = useState(null);
+  const [imageFileName, setImageFileName] = useState('');
   const messages = useMessages(roomId, 50);
   const { state } = useContext(AuthContext);
 
@@ -55,7 +60,7 @@ const ChatRoom = ({ route }) => {
 
   const sendMsg = () => {
     // if we didnt send anything..
-    if (messageValue === '') {
+    if (messageValue === '' && image === null) {
       return;
     }
 
@@ -67,9 +72,32 @@ const ChatRoom = ({ route }) => {
       sendBy: state.userInformation?.additionalUserInfo?.profile?.name,
       uid: state.userInformation.user.uid,
       profilePic: state.userInformation?.additionalUserInfo?.profile?.picture,
+      image: image,
     });
     textInputRef.current.clear();
     Keyboard.dismiss();
+    setImageFileName('');
+    setImage(null);
+    setMessageValue('');
+  };
+
+  const uplImage = () => {
+    const options = {
+      mediaType: 'photo',
+      includeBase64: true,
+      maxWidth: 200,
+      maxHeight: 250,
+    };
+
+    launchImageLibrary(options, response => {
+      if (response.errorCode) {
+        Alert.alert(response.errorMessage);
+        return;
+      }
+      // base 64
+      setImage('data:image/' + response.type + ';base64,' + response.base64);
+      setImageFileName(response.fileName);
+    });
   };
 
   return (
@@ -88,6 +116,7 @@ const ChatRoom = ({ route }) => {
                 message={item.msg}
                 sendBy={item.sendBy}
                 time={item.createdAt}
+                image={item.image}
               />
               <Avatar
                 containerStyle={{
@@ -122,6 +151,12 @@ const ChatRoom = ({ route }) => {
           )}
         />
       </MainContainer>
+      {image ? (
+        <ImageFileNameContainer>
+          <Text> Filename: {imageFileName}</Text>
+        </ImageFileNameContainer>
+      ) : null}
+
       <SendButtonContainer>
         <TextInput
           ref={ref => {
@@ -143,7 +178,10 @@ const ChatRoom = ({ route }) => {
         />
         <View style={{ flexDirection: 'row' }}>
           <TouchableOpacity onPress={() => sendMsg()}>
-            <Icon name="send" color={PastalYallow} size={50} />
+            <Icon name="send" color={PastalBlue} size={50} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => uplImage()}>
+            <Icon name="camera" color={PastalBlue} size={50} />
           </TouchableOpacity>
         </View>
       </SendButtonContainer>

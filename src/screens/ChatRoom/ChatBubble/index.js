@@ -52,12 +52,7 @@ const ChatBubble = ({ mine, message, image }) => {
            * if we have an image attached to the msg, show it!
            *
            */}
-          {image ? (
-            <ImageEmbedded
-              style={{ alignSelf: mine ? 'flex-start' : 'flex-end' }}
-              source={image}
-            />
-          ) : null}
+          {image ? <ImageEmbedded source={{ uri: image }} /> : null}
           {/**
            * if we have a msg attached it, and color it depending on who wrote it
            *

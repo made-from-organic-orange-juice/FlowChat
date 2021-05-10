@@ -1,7 +1,13 @@
 import styled from 'styled-components/native';
 import { Colors } from '../../shared/constants/colors';
 
-export const { PastalMutedBlue, PastalYallow, PastalRed, PastalBlue } = Colors;
+export const {
+  PastalMutedBlue,
+  PastalYallow,
+  PastalRed,
+  PastalBlue,
+  PastalGreen,
+} = Colors;
 
 export const RoomContainer = styled.View`
   flex: 1;
@@ -37,4 +43,9 @@ export const SendButtonContainer = styled.View`
   align-items: center;
   justify-content: flex-end;
   margin: 5px;
+`;
+
+export const ImageFileNameContainer = styled.View`
+  background-color: ${PastalGreen};
+  border-radius: 10px;
 `;

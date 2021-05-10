@@ -20,7 +20,8 @@ export const ProfileDivider = styled(props => (
 export const AvatarContainer = styled.View`
   flex: 1;
   align-self: center;
-  width: 200px;
+  width: 100px;
+  height: 100px;
   flex-direction: column;
 `;
 
@@ -63,7 +64,7 @@ export const BackgroundContainer = styled.View`
 `;
 
 export const SignoutContainer = styled.View`
-  flex: 0.5;
+  flex: 1;
   flex-direction: column;
   align-items: center;
 `;

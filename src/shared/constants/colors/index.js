@@ -8,4 +8,5 @@ export const Colors = {
   PastalOrange: '#FCE5B1',
   PastalRed: '#FACEDF',
   PastalBlue: '#8DBBF2',
+  PastalGreen: '#9EF28D',
 };
