@@ -1,6 +1,5 @@
 // Libraries
-import React, { useEffect, useContext, useState } from 'react';
-import { Text } from 'react-native';
+import React, { useEffect, useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import SplashScreen from 'react-native-splash-screen';
@@ -9,13 +8,11 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 // Includes
 import { Auth } from '../shared/constants/Auth';
 import { Context as AuthContext } from '../shared/context/AuthContext';
-
 import Login from '../screens/Login';
 import MainScreen from '../screens/MainScreen';
 import ChatRoom from '../screens/ChatRoom';
 
 // Styles
-//....
 
 /**
  * @description

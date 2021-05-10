@@ -58,9 +58,7 @@ const authReducer = (state, action) => {
 };
 
 /**
- *
- * @param {*} dispatch
- * @returns
+ * @returns dispatches the users credentials into global state
  */
 const signinGoogle = dispatch => {
   return async () => {
@@ -93,8 +91,7 @@ const signinGoogle = dispatch => {
 
 /**
  *
- * @param {*} dispatch
- * @returns
+ * @returns if user already logged in, just skip the login process.
  */
 
 const trySigninSilently = dispatch => {
@@ -122,8 +119,7 @@ const trySigninSilently = dispatch => {
 
 /**
  *
- * @param {*} dispatch
- * @returns
+ * @returns removes user credentials
  */
 const signout = dispatch => {
   return async () => {

@@ -31,6 +31,7 @@ const Login = () => {
       setGoogleButtonLoading(false);
       clearErrorMessage();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.errorMessage]);
 
   return (

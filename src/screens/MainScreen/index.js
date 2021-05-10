@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 // Libraries
 import React, {
   useContext,

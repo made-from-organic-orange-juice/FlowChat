@@ -6,7 +6,6 @@ import Svg, { Path } from 'react-native-svg';
 import { moderateScale } from 'react-native-size-matters';
 
 // Includes
-import BasicText from '../../../shared/components/BasicText';
 
 // Styles
 import {

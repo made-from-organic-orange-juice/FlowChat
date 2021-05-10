@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import styled from 'styled-components/native';
 import BasicText from '../../shared/components/BasicText';
@@ -18,7 +19,6 @@ export const ProfileDivider = styled(props => (
 ))``;
 
 export const AvatarContainer = styled.View`
-  flex: 1;
   align-self: center;
   width: 100px;
   height: 100px;
@@ -26,15 +26,14 @@ export const AvatarContainer = styled.View`
 `;
 
 export const ProfileImageContainer = styled.View`
-  flex: 0.3;
-  margin-horizontal: 20px;
-  margin-top: 10px;
+  flex: 0.5;
+  width: 80%;
   border-radius: 10px;
+  align-self: center;
   justify-content: center;
-  background-color: ${PastalBlue};
+  background-color: white;
   shadow-color: black;
   shadow-opacity: 0.26;
-  shadow-offset: { width: 0, height: 2};
   shadow-radius: 10px;
   elevation: 3;
 `;
@@ -48,12 +47,11 @@ export const UserAvatar = styled(props => (
 
 export const RoomContainer = styled.View`
   flex: 1;
-  margin: 20px;
+  margin: 10px;
   border-radius: 10px;
   background-color: white;
   shadow-color: black;
   shadow-opacity: 0.26;
-  shadow-offset: { width: 0, height: 2};
   shadow-radius: 10px;
   elevation: 3;
 `;
@@ -101,7 +99,7 @@ export const SignoutButton = styled(props => (
 export const Label = styled(props => <BasicText {...props} />)`
   font-weight: bold;
   font-size: 20px;
-  margin: 10px;
+  margin: 5px;
   align-self: center;
-  color: white;
+  color: black;
 `;
