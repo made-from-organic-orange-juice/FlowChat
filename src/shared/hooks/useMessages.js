@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import firestore from '@react-native-firebase/firestore';
 
-const useMesseges = (roomId, limit) => {
+const useMessages = (roomId, limit) => {
   const [messages, setMessages] = useState(null);
 
   useEffect(() => {
@@ -29,4 +29,4 @@ const useMesseges = (roomId, limit) => {
   return messages;
 };
 
-export default useMesseges;
+export default useMessages;
