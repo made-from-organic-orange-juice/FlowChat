@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { SocialIcon, Divider } from 'react-native-elements';
 
-import BasicText from '../../shared/components/BasicText';
-import { Colors } from '../../shared/constants/colors';
+import BasicText from '../../shared/components/BasicText/index.js';
+import { Colors } from '../../shared/constants/colors/index.js';
 
 export const { PastalMutedBlue, PastalYallow, PastalRed, PastalBlue } = Colors;
 
@@ -13,16 +13,16 @@ export const SocialButton = styled(props => <SocialIcon button {...props} />)`
   height: 80px;
 `;
 
-export const ButtonDivider = styled(props => (
-  <Divider style={{ backgroundColor: PastalMutedBlue, marginHorizontal: 40 }} />
-))``;
+export const ButtonDivider = styled(props => <Divider {...props} />)`
+  background-color: ${Colors.PastalMutedBlue};
+`;
 
 export const SocialContainer = styled.View`
-  flex: 0.5;
+  flex: 0.2;
   justify-content: center;
   flex-direction: column;
-  margin-horizontal: 40px;
-  margin-vertical: 20px;
+  margin-horizontal: 5px;
+  margin-vertical: 10px;
 `;
 
 export const BackgroundContainer = styled.View`
@@ -34,8 +34,8 @@ export const LoginContainer = styled.View`
   flex: 1;
   border-radius: 10px;
   background-color: white;
-  margin-horizontal: 20px;
-  margin-vertical: 20px;
+  margin-horizontal: 10px;
+  margin-vertical: 10px;
   shadow-color: black;
   shadow-opacity: 0.26;
   shadow-offset: { width: 0, height: 2};

@@ -1,12 +1,12 @@
 // Libraries
-import React from 'react';
+import React, { FC } from 'react';
 import { SafeAreaView } from 'react-native';
 
 // Includes
-import { Provider as AuthProvider } from './shared/context/AuthContext';
+import { Provider as AuthProvider } from './shared/context/AuthContext.js';
 import Routes from './routes';
 
-const App = () => {
+const App: FC = () => {
   return (
     <AuthProvider>
       <SafeAreaView style={{ flex: 1 }}>

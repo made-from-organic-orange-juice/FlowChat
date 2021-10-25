@@ -4,6 +4,7 @@ import { Alert } from 'react-native';
 
 // Includes
 import { Context as AuthContext } from '../../shared/context/AuthContext';
+import ErrorBox from '../../shared/components/ErrorBox';
 
 // Styles
 import {
@@ -15,30 +16,21 @@ import {
   ButtonDivider,
   BackgroundContainer,
 } from './styles';
+import { View } from 'react-native-animatable';
 
 /********************************************************************************
  *  Login Component
  * ******************************************************************************/
 
 const Login = () => {
-  const { state, signinGoogle, clearErrorMessage } = useContext(AuthContext);
+  const { signinGoogle } = useContext(AuthContext);
   const [googleButtonLoading, setGoogleButtonLoading] = useState(false);
-
-  useEffect(() => {
-    if (state.errorMessage !== '') {
-      // TODO: create something better here... maybe a toast at the bottom..
-      Alert.alert('Error', state.errorMessage);
-      setGoogleButtonLoading(false);
-      clearErrorMessage();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.errorMessage]);
 
   return (
     <BackgroundContainer>
+      <ErrorBox stopLoading={() => setGoogleButtonLoading(false)} />
       <LoginContainer>
-        <Logo source={require('../../shared/assets/images/Icon.png')} />
-
+        <Logo source={require('../../shared/assets/images/Icon3.png')} />
         <Label>FlowChat</Label>
         <ButtonDivider />
         <SocialContainer>
@@ -51,12 +43,6 @@ const Login = () => {
               signinGoogle();
               setGoogleButtonLoading(true);
             }}
-          />
-          <SocialButton
-            disabled
-            type={'facebook'}
-            title={'Sign In With Facebook'}
-            onPress={() => {}}
           />
         </SocialContainer>
       </LoginContainer>

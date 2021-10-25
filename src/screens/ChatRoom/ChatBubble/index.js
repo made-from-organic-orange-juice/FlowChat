@@ -53,7 +53,7 @@ const ChatBubble = ({ mine, message, image }) => {
            */}
           {image ? <ImageEmbedded source={{ uri: image }} /> : null}
           {/**
-           * if we have a msg attached it, and color it depending on who wrote it
+           * if we have a msg attached, then color it depending on who wrote it
            *
            */}
           {message ? (

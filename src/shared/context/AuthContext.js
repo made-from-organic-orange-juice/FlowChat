@@ -1,5 +1,5 @@
 import React from 'react';
-import createDataContext from './createDataContext';
+import createDataContext from './createDataContext.js';
 import {
   GoogleSignin,
   statusCodes,

@@ -1,8 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import styled from 'styled-components/native';
-import BasicText from '../../shared/components/BasicText';
-import { Colors } from '../../shared/constants/colors';
+import BasicText from '../../shared/components/BasicText/index.js';
+import { Colors } from '../../shared/constants/colors/index.js';
 import { Button, Avatar, Divider } from 'react-native-elements';
 
 export const {

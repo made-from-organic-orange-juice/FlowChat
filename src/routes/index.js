@@ -6,11 +6,11 @@ import SplashScreen from 'react-native-splash-screen';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 // Includes
-import { Auth } from '../shared/constants/Auth';
-import { Context as AuthContext } from '../shared/context/AuthContext';
-import Login from '../screens/Login';
-import MainScreen from '../screens/MainScreen';
-import ChatRoom from '../screens/ChatRoom';
+import { Auth } from '../shared/constants/Auth/index.js';
+import { Context as AuthContext } from '../shared/context/AuthContext.js';
+import Login from '../screens/Login/index.js';
+import MainScreen from '../screens/MainScreen/index.js';
+import ChatRoom from '../screens/ChatRoom/index.js';
 
 // Styles
 
@@ -64,7 +64,7 @@ const Routes = () => {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [trySigninSilently, webClientId]);
 
   return (
     <NavigationContainer>
