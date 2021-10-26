@@ -7,7 +7,7 @@ and then new messages are added automatically as they come in.
 The following task are implemented:
 
 1. Splash screen ✔ ( only on android, since I dont have an Apple computer )
-2. Login screen ✔
+2. Login screen that silently tries to login if you are not logged out ✔
 3. Chat rooms ✔
 4. Open chat room ✔
 5. Send and receive messages ✔
