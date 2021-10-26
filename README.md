@@ -30,18 +30,16 @@ The things you need before you can run the app.
 * The React Native command line interface
 * A JDK, and Android Studio.
 
-### Installation
-
 For A step by step guide that will tell you how to get the development environment up and running see:
 https://reactnative.dev/docs/environment-setup
 
+### Installation & Usage
 
-## Usage
-
-For getting the app up and running on an android phone:
+Make sure your device is shown when running: ``` $adb devices ``` before running the commands below.
+For getting the app running on a device run: 
 ```
+$ git clone https://github.com/made-from-organic-orange-juice/FlowChat
 $ npm install
 $ npx react-native start (terminal 1) 
 $ npx react-native run-android (terminal 2)
 ```
-
