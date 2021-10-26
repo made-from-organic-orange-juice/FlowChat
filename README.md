@@ -12,7 +12,7 @@ The following task are implemented:
 4. Open chat room ✔
 5. Send and receive messages ✔
 
-<img src="Screenshots/Screenshot_20211026-161717_FlowChat.jpg.png" height="200">
+<img src="Screenshots/Screenshot_20211026-161717_FlowChat.jpg" height="200">
 
 
 ## Getting Started
