@@ -1,4 +1,4 @@
-#FlowChat
+# FlowChat
 
 The project is based on firebase. It’s a simple chat application that includes login
 functionality and the possibility to join some predefined chat
