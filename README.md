@@ -13,9 +13,9 @@ The following task are implemented:
 5. Send and receive messages ✔
 
 <p align="center">
-<img align="right" src="Screenshots/Screenshot_20211026-161717_FlowChat.jpg" height="400">
-<img align="right" src="Screenshots/Screenshot_20211026-161754_FlowChat.jpg" height="400">
-<img align="right" src="Screenshots/Screenshot_20211026-161816_FlowChat.jpg" height="400">
+<img  src="Screenshots/Screenshot_20211026-161717_FlowChat.jpg" height="400">
+<img src="Screenshots/Screenshot_20211026-161754_FlowChat.jpg" height="400">
+<img src="Screenshots/Screenshot_20211026-161816_FlowChat.jpg" height="400">
 </p>
 
 ## Getting Started
