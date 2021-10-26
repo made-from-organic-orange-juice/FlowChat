@@ -21,6 +21,7 @@ The following task are implemented:
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+This is only tested on an android device!
 
 ### Prerequisites
 
