@@ -40,6 +40,7 @@ Make sure your device is shown when running: ``` $adb devices ``` before running
 For getting the app running on a device run: 
 ```
 $ git clone https://github.com/made-from-organic-orange-juice/FlowChat
+$ cd FlowChat
 $ npm install
 $ npx react-native start (terminal 1) 
 $ npx react-native run-android (terminal 2)
