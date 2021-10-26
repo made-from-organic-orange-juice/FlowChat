@@ -12,7 +12,7 @@ The following task are implemented:
 4. Open chat room ✔
 5. Send and receive messages ✔
 
-![Screenshot_20211026-161717_FlowChat.jpg](https://github.com/made-from-organic-orange-juice/FlowChat/blob/master/Screenshots/Screenshot_20211026-161717_FlowChat.jpg)
+![Screenshot_20211026-161717_FlowChat.jpg](https://github.com/made-from-organic-orange-juice/FlowChat/blob/master/Screenshots/Screenshot_20211026-161717_FlowChat.jpg width="200" height="200")
 
 
 ## Getting Started
