@@ -1,11 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 
 // Libraries
-import React from 'react';
+import React, { FC } from 'react';
 import Svg, { Path } from 'react-native-svg';
 import { moderateScale } from 'react-native-size-matters';
 
 // Includes
+import { ChatBubbleProps } from '../../../shared/types';
 
 // Styles
 import {
@@ -21,9 +22,12 @@ import {
 
 /********************************************************************************
  *  ChatBubble Component that is used for the chatroom
+ * !!Important!!!
+ * I have used inline styling here because I can't get styled components to work
+ * with the conditionals.
  * ******************************************************************************/
 
-const ChatBubble = ({ mine, message, image }) => {
+const ChatBubble: FC<ChatBubbleProps> = ({ mine, message, image }) => {
   return (
     <MainContainer>
       {/**

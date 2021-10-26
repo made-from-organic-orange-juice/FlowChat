@@ -1,6 +1,5 @@
 //Libraries
-import React, { useContext, useEffect, useState } from 'react';
-import { Alert } from 'react-native';
+import React, { useContext, useState } from 'react';
 
 // Includes
 import { Context as AuthContext } from '../../shared/context/AuthContext';
@@ -16,7 +15,6 @@ import {
   ButtonDivider,
   BackgroundContainer,
 } from './styles';
-import { View } from 'react-native-animatable';
 
 /********************************************************************************
  *  Login Component
@@ -24,11 +22,13 @@ import { View } from 'react-native-animatable';
 
 const Login = () => {
   const { signinGoogle } = useContext(AuthContext);
-  const [googleButtonLoading, setGoogleButtonLoading] = useState(false);
+  const [googleButtonLoading, setGoogleButtonLoading] = useState<Boolean>(
+    false,
+  );
 
   return (
     <BackgroundContainer>
-      <ErrorBox stopLoading={() => setGoogleButtonLoading(false)} />
+      <ErrorBox onError={() => setGoogleButtonLoading(false)} />
       <LoginContainer>
         <Logo source={require('../../shared/assets/images/Icon3.png')} />
         <Label>FlowChat</Label>

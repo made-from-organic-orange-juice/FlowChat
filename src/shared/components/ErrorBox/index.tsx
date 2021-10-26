@@ -1,9 +1,10 @@
 //Libraries
-import React, { useRef, useEffect, useState, useContext } from 'react';
+import React, { useRef, useEffect, useState, useContext, FC } from 'react';
 import { Animated } from 'react-native';
 
 // Includes
 import { Context as AuthContext } from '../../context/AuthContext';
+import { ErrorProps } from '../../types';
 
 // Styles
 import {
@@ -13,8 +14,8 @@ import {
   MainContainer,
 } from './styles';
 
-const ErrorBox = ({ stopLoading }) => {
-  const [isRunningAnimation, setIsRunningAnimation] = useState(false);
+const ErrorBox: FC<ErrorProps> = ({ onError }) => {
+  const [isRunningAnimation, setIsRunningAnimation] = useState<Boolean>(false);
   const { state, clearErrorMessage } = useContext(AuthContext);
 
   /**
@@ -32,8 +33,8 @@ const ErrorBox = ({ stopLoading }) => {
   useEffect(() => {
     if (state.errorMessage !== '') {
       // if we need to stop loading somewhere...
-      if (stopLoading) {
-        stopLoading();
+      if (onError) {
+        onError();
       }
       // Only run the animation when its finished!
       if (!isRunningAnimation) {
@@ -56,7 +57,7 @@ const ErrorBox = ({ stopLoading }) => {
         }, 5000);
       }
     }
-  }, [clearErrorMessage, isRunningAnimation, state, stopLoading]);
+  }, [clearErrorMessage, isRunningAnimation, onError, state]);
 
   return (
     <MainContainer>

@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { Colors } from '../../shared/constants/colors/index.js';
+import { Colors } from '../../shared/constants/colors';
 
 export const {
   PastalMutedBlue,

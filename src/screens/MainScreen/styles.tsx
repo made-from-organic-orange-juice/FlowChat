@@ -1,8 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import styled from 'styled-components/native';
-import BasicText from '../../shared/components/BasicText/index.js';
-import { Colors } from '../../shared/constants/colors/index.js';
+import BasicText from '../../shared/components/BasicText';
+import { Colors } from '../../shared/constants/colors';
 import { Button, Avatar, Divider } from 'react-native-elements';
 
 export const {
@@ -14,7 +14,7 @@ export const {
   PastalOrange,
 } = Colors;
 
-export const ProfileDivider = styled(props => (
+export const ProfileDivider = styled(() => (
   <Divider style={{ backgroundColor: PastalMutedBlue, marginHorizontal: 40 }} />
 ))``;
 
@@ -26,8 +26,7 @@ export const AvatarContainer = styled.View`
 `;
 
 export const ProfileImageContainer = styled.View`
-  flex: 0.5;
-  width: 80%;
+  flex: 0.4;
   border-radius: 10px;
   align-self: center;
   justify-content: center;
@@ -36,6 +35,7 @@ export const ProfileImageContainer = styled.View`
   shadow-opacity: 0.26;
   shadow-radius: 10px;
   elevation: 3;
+  width: 93%;
 `;
 
 export const UserAvatar = styled(props => (

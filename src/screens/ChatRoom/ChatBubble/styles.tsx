@@ -4,7 +4,7 @@ import { View, Text, ActivityIndicator } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
 import { Image } from 'react-native-elements';
 
-import { Colors } from '../../../shared/constants/colors/index.js';
+import { Colors } from '../../../shared/constants/colors';
 
 export const {
   PastalMutedBlue,

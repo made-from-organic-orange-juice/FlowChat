@@ -1,6 +1,6 @@
-import React from 'react';
+import { ColorType } from '../../types';
 
-export const Colors = {
+export const Colors: ColorType = {
   LogoBackground: '#1F2544',
   LightBlue: '#E7EAF2',
   PastalMutedBlue: '#D8DDE9',

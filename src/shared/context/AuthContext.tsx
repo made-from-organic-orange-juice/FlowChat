@@ -1,10 +1,8 @@
-import React from 'react';
-import createDataContext from './createDataContext.js';
-import {
-  GoogleSignin,
-  statusCodes,
-} from '@react-native-google-signin/google-signin';
+import { FC } from 'react';
+import createDataContext from './createDataContext';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
+import { ReducerType, ReducerActions } from '../types/index.js';
 
 /*
  * @description
@@ -17,11 +15,11 @@ import auth from '@react-native-firebase/auth';
  *     })
  */
 
-const kACTIONS = {
-  SIGNIN: 'SIGNIN',
-  SIGNOUT: 'SIGNOUT',
-  PUSH_ERROR: 'PUSH_ERROR',
-  CLEAR_ERROR_MESSAGES: 'CLEAR_ERROR_MESSAGES',
+const reducerActions: ReducerActions = {
+  SignIn: 'SignIn',
+  SignOut: 'SignOut',
+  SetError: 'SetError',
+  ClearError: 'ClearError',
 };
 
 /**
@@ -36,21 +34,21 @@ const kACTIONS = {
  * @param {*} state The current state of the object you are trying to change.
  * @param {*} action the thing that changes the state
  */
-const authReducer = (state, action) => {
+const authReducer: FC<ReducerType> = (state, action): any => {
   switch (action.type) {
-    case kACTIONS.PUSH_ERROR:
+    case reducerActions.SetError:
       return { ...state, errorMessage: action.payload };
-    case kACTIONS.SIGNIN:
+    case reducerActions.SignIn:
       return {
         ...state,
-        userInformation: action.userInformation,
+        userInformation: action.payload,
       };
-    case kACTIONS.SIGNOUT:
+    case reducerActions.SignOut:
       return {
         userInformation: null,
         errorMessage: '',
       };
-    case kACTIONS.CLEAR_ERROR_MESSAGES:
+    case reducerActions.ClearError:
       return { ...state, errorMessage: '' };
     default:
       return state;
@@ -60,8 +58,8 @@ const authReducer = (state, action) => {
 /**
  * @returns dispatches the users credentials into global state
  */
-const signinGoogle = dispatch => {
-  return async () => {
+const signinGoogle = (dispatch: any): any => {
+  return async (): Promise<void> => {
     // Try to signin
     try {
       // Get the users ID token
@@ -76,13 +74,13 @@ const signinGoogle = dispatch => {
       );
 
       dispatch({
-        type: kACTIONS.SIGNIN,
-        userInformation: userCredential,
+        type: reducerActions.SignIn,
+        payload: userCredential,
       });
     } catch (err) {
       const msg = err.message;
       dispatch({
-        type: kACTIONS.PUSH_ERROR,
+        type: reducerActions.SetError,
         payload: msg,
       });
     }
@@ -94,7 +92,7 @@ const signinGoogle = dispatch => {
  * @returns if user already logged in, just skip the login process.
  */
 
-const trySigninSilently = dispatch => {
+const trySigninSilently = (dispatch: any): any => {
   return async () => {
     try {
       const { idToken } = await GoogleSignin.signInSilently();
@@ -109,8 +107,8 @@ const trySigninSilently = dispatch => {
         );
 
         dispatch({
-          type: kACTIONS.SIGNIN,
-          userInformation: userCredential,
+          type: reducerActions.SignIn,
+          payload: userCredential,
         });
       }
     } catch (error) {}
@@ -121,20 +119,20 @@ const trySigninSilently = dispatch => {
  *
  * @returns removes user credentials
  */
-const signout = dispatch => {
+const signout = (dispatch: any): any => {
   return async () => {
     await auth().signOut();
     await GoogleSignin.signOut();
 
     dispatch({
-      type: kACTIONS.SIGNOUT,
+      type: reducerActions.SignOut,
     });
 
     try {
     } catch (err) {
       const msg = err.message;
       dispatch({
-        type: kACTIONS.PUSH_ERROR,
+        type: reducerActions.SetError,
         payload: msg,
       });
     }
@@ -145,9 +143,22 @@ const signout = dispatch => {
  * @description Clear the pushed error message that is currently being set
  * @param {*} dispatch
  */
-const clearErrorMessage = dispatch => {
+const clearErrorMessage = (dispatch: any): any => {
   return () => {
-    dispatch({ type: kACTIONS.CLEAR_ERROR_MESSAGES });
+    dispatch({ type: reducerActions.ClearError });
+  };
+};
+
+/**
+ *  @description Set an error message
+ */
+
+const setErrorMessage = (dispatch: any): any => {
+  return (message: string) => {
+    dispatch({
+      type: reducerActions.SetError,
+      payload: message,
+    });
   };
 };
 
@@ -161,6 +172,7 @@ export const { Provider, Context } = createDataContext(
     signinGoogle,
     signout,
     clearErrorMessage,
+    setErrorMessage,
   },
   {
     userInformation: null,

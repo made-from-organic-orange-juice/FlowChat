@@ -4,7 +4,9 @@ import BasicText from '../BasicText';
 import { Colors } from '../../constants/colors';
 import { Animated } from 'react-native';
 
-export const Label = styled(props => <BasicText {...props} />)`
+export const Label = styled((props: JSX.IntrinsicAttributes) => (
+  <BasicText {...props} />
+))`
   font-weight: normal;
   font-size: 12px;
   align-self: center;

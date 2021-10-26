@@ -9,20 +9,20 @@ import {
   View,
   TextInput,
   Keyboard,
-  Alert,
-  Image,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Icon, Avatar } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 import firestore from '@react-native-firebase/firestore';
-import { formatDistance } from 'date-fns';
-import { launchImageLibrary } from 'react-native-image-picker';
+import {
+  ImageLibraryOptions,
+  launchImageLibrary,
+} from 'react-native-image-picker';
 
 // Includes
 import useMessages from '../../shared/hooks/useMessages';
 import { Context as AuthContext } from '../../shared/context/AuthContext';
-import ChatBubble from './ChatBubble';
-import BasicText from '../../shared/components/BasicText';
+import ErrorBox from '../../shared/components/ErrorBox';
+import { ChatroomScreenProp } from '../../shared/types';
 
 // Styles
 import {
@@ -32,25 +32,26 @@ import {
   PastalBlue,
   ImageFileNameContainer,
 } from './styles';
+import ChatItem from './ChatItem';
 
 /********************************************************************************
  *  ChatRoom Component
  * ******************************************************************************/
 
-const ChatRoom = ({ route }) => {
+const ChatRoom = ({ route }: any) => {
   const { roomId, name } = route.params;
-  const navigation = useNavigation();
+  const navigation = useNavigation<ChatroomScreenProp>();
   const [messageValue, setMessageValue] = useState('');
   const [image, setImage] = useState(null);
   const [imageFileName, setImageFileName] = useState('');
   const messages = useMessages(roomId, 50);
-  const { state } = useContext(AuthContext);
+  const { state, setErrorMessage } = useContext(AuthContext);
 
   // set the header with the users name
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: true,
-      headerTitle: <Text>{name}</Text>,
+      headerTitle: name,
       headerStyle: { backgroundColor: PastalBlue },
     });
   }, [navigation, name]);
@@ -59,21 +60,27 @@ const ChatRoom = ({ route }) => {
   const textInputRef = useRef(null);
 
   const sendMsg = () => {
-    // if we didnt send anything..
+    // if the input and image is empty
     if (messageValue === '' && image === null) {
       return;
     }
 
     // otherwise.. send the msg to firestore..
-    // TODO: make this available thru a context
-    firestore().collection('rooms').doc(roomId).collection('messages').add({
-      createdAt: firestore.FieldValue.serverTimestamp(),
-      msg: messageValue,
-      sendBy: state.userInformation?.additionalUserInfo?.profile?.name,
-      uid: state.userInformation.user.uid,
-      profilePic: state.userInformation?.additionalUserInfo?.profile?.picture,
-      image: image,
-    });
+    firestore()
+      .collection('rooms')
+      .doc(roomId)
+      .collection('messages')
+      .add({
+        createdAt: firestore.FieldValue.serverTimestamp(),
+        msg: messageValue,
+        sendBy: state.userInformation?.additionalUserInfo?.profile?.name,
+        uid: state.userInformation.user.uid,
+        profilePic: state.userInformation?.additionalUserInfo?.profile?.picture,
+        image: image,
+      })
+      .catch(err => {
+        setErrorMessage(err);
+      });
     textInputRef.current.clear();
     Keyboard.dismiss();
     setImageFileName('');
@@ -82,7 +89,7 @@ const ChatRoom = ({ route }) => {
   };
 
   const uplImage = () => {
-    const options = {
+    const options: ImageLibraryOptions = {
       mediaType: 'photo',
       includeBase64: true,
       maxWidth: 200,
@@ -91,7 +98,7 @@ const ChatRoom = ({ route }) => {
 
     launchImageLibrary(options, response => {
       if (response.errorCode) {
-        Alert.alert(response.errorMessage);
+        setErrorMessage(response.errorMessage);
         return;
       }
 
@@ -107,53 +114,18 @@ const ChatRoom = ({ route }) => {
 
   return (
     <BackgroundContainer>
+      <ErrorBox
+        onError={() => {
+          // do nothing
+          // it shows the red box automatically!
+        }}
+      />
       <MainContainer>
         <FlatList
           inverted
           data={messages}
           keyExtractor={(_, index) => index.toString()}
-          renderItem={({ item }) => (
-            <View>
-              <BasicText> {item.sendBy}</BasicText>
-
-              <ChatBubble
-                mine={item.uid === state.userInformation.user.uid}
-                message={item.msg}
-                sendBy={item.sendBy}
-                time={item.createdAt}
-                image={item.image}
-              />
-              <Avatar
-                containerStyle={{
-                  alignSelf:
-                    item.uid === state.userInformation.user.uid
-                      ? 'flex-start'
-                      : 'flex-end',
-                }}
-                rounded
-                source={{
-                  uri: item.profilePic,
-                }}
-              />
-              <View
-                style={{
-                  alignSelf:
-                    item.uid === state.userInformation.user.uid
-                      ? 'flex-start'
-                      : 'flex-end',
-                  margin: 5,
-                }}>
-                <BasicText fontSize={10} textColor={'black'}>
-                  Sent{' '}
-                  {formatDistance(
-                    new Date(),
-                    item.createdAt ? item.createdAt.toDate() : new Date(),
-                  )}{' '}
-                  ago by {item.sendBy}.
-                </BasicText>
-              </View>
-            </View>
-          )}
+          renderItem={({ item }) => <ChatItem item={item} />}
         />
       </MainContainer>
       {image ? (

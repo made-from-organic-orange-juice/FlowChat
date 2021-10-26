@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { SocialIcon, Divider } from 'react-native-elements';
 
-import BasicText from '../../shared/components/BasicText/index.js';
-import { Colors } from '../../shared/constants/colors/index.js';
+import BasicText from '../../shared/components/BasicText';
+import { Colors } from '../../shared/constants/colors';
 
 export const { PastalMutedBlue, PastalYallow, PastalRed, PastalBlue } = Colors;
 
