@@ -16,11 +16,6 @@ export const ChatAvatar = styled(props => (
   />
 ))``;
 
-export const SentContainer = styled(props => (
-  <View
-    style={{
-      alignSelf: props.isUser ? 'flex-start' : 'flex-end',
-      margin: 5,
-    }}
-  />
-))``;
+export const SentContainer = styled(props => <View {...props} />)`
+  margin: 5px;
+`;

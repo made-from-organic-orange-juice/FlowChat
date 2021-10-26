@@ -26,7 +26,11 @@ const ChatItem: FC<ChatItemProps> = ({ item }) => {
         image={item.image}
       />
       <ChatAvatar isUser={isUser} pic={item.profilePic} />
-      <SentContainer isUser={isUser}>
+      {/* for some reason conditional doesnt work with styled components?  */}
+      <SentContainer
+        style={{
+          alignSelf: isUser ? 'flex-start' : 'flex-end',
+        }}>
         <BasicText fontSize={10} textColor={'black'}>
           Sent{' '}
           {formatDistance(
